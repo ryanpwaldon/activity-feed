@@ -18,12 +18,7 @@
                     :key="index">
                     {{ segment.content }}
                   </router-link>
-                  <span
-                    class="text-item"
-                    v-else
-                    :key="index">
-                    {{ segment.content }}
-                  </span>
+                  <span class="text-item" v-else :key="index">{{ segment.content }}</span>
                 </template>
               </div>
             </div>
@@ -38,8 +33,8 @@
 </template>
 
 <script>
-import BaseError from '@/components/BaseError/BaseError'
 import BaseLoader from '@/components/BaseLoader/BaseLoader'
+import BaseError from '@/components/BaseError/BaseError'
 import { mapState } from 'vuex'
 export default {
   name: 'BaseActivityFeed',
