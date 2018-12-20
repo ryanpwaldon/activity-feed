@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/views/Home/Home'
-import Task from '@/views/Tasks/views/Task/Task'
-import User from '@/views/Users/views/User/User'
-
 Vue.use(Router)
 
 const router = new Router({
@@ -14,17 +10,17 @@ const router = new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: () => import('@/views/Home/Home')
     },
     {
       path: '/tasks/:task',
       name: 'Task',
-      component: Task
+      component: () => import('@/views/Tasks/views/Task/Task')
     },
     {
       path: '/users/:user',
       name: 'User',
-      component: User
+      component: () => import('@/views/Users/views/User/User')
     },
     {
       path: '*',
