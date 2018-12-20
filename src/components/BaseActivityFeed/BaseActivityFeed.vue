@@ -90,7 +90,7 @@ export default {
                     path: `/users/${profiles[id].slug}`
                   }
                 default:
-                  throw new Error(`Unrecognised expression type "${type}"`)
+                  throw new Error(`Unrecognised type "${type}"`)
               }
             } else { // segment is a string
               return {
