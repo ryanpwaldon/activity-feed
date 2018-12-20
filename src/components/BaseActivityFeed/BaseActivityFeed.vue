@@ -38,19 +38,19 @@ import BaseError from '@/components/BaseError/BaseError'
 import { mapState } from 'vuex'
 export default {
   name: 'BaseActivityFeed',
-  data () {
-    return {
-      activities: [],
-      hoveredPath: null,
-      error: null
-    }
-  },
   components: {
     BaseLoader,
     BaseError
   },
   mounted () {
     this.getActivityFeed()
+  },
+  data () {
+    return {
+      activities: [],
+      hoveredPath: null,
+      error: null
+    }
   },
   computed: mapState([
     'activityFeed'
