@@ -1,4 +1,4 @@
-# rynpw-client
+# activity-feed
 
 ## Project setup
 ```
