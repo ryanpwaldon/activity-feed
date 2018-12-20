@@ -1,20 +1,38 @@
 <template>
   <div class="base-activity-feed">
-    <transition name="fade" mode="out-in">
-      <BaseError v-if="error" :error="error" key="error"/>
-      <transition name="fade" mode="out-in" v-else>
-        <BaseLoader v-if="!activities.length" key="loader"/>
-        <div class="activities-container" v-else>
-          <div class="activity-container" v-for="(activity, index) in activities" :key="index">
-            <div class="activity-item">
-              <template v-for="(segment, index) in activity">
-                <router-link class="link-item" :to="segment.path" v-if="segment.template" :key="index">{{ segment.content }}</router-link>
-                <span class="text-item" v-else :key="index">{{ segment.content }}</span>
-              </template>
+    <div class="activity-feed-container">
+      <transition name="fade" mode="out-in">
+        <BaseError v-if="error" :error="error" key="error"/>
+        <transition name="fade" mode="out-in" v-else>
+          <BaseLoader v-if="!activities.length" key="loader"/>
+          <div class="activities-container" v-else>
+            <div class="activity-container" v-for="(activity, index) in activities" :key="index">
+              <div class="activity-item">
+                <template v-for="(segment, index) in activity">
+                  <router-link
+                    class="link-item"
+                    v-if="segment.template"
+                    :to="segment.path"
+                    @mouseenter.native="hoveredPath = segment.path"
+                    @mouseleave.native="hoveredPath = null"
+                    :key="index">
+                    {{ segment.content }}
+                  </router-link>
+                  <span
+                    class="text-item"
+                    v-else
+                    :key="index">
+                    {{ segment.content }}
+                  </span>
+                </template>
+              </div>
             </div>
           </div>
-        </div>
+        </transition>
       </transition>
+    </div>
+    <transition name="fade">
+      <div v-if="hoveredPath" class="hovered-path-item">{{ hoveredPath }}</div>
     </transition>
   </div>
 </template>
@@ -28,6 +46,7 @@ export default {
   data () {
     return {
       activities: [],
+      hoveredPath: null,
       error: null
     }
   },
@@ -90,7 +109,6 @@ export default {
         this.activities = activities
       } catch (error) {
         this.error = error
-        console.error(error)
       }
     },
     getProfileDetails (profileId) {
@@ -113,6 +131,12 @@ export default {
 
 <style lang="scss" scoped>
 .base-activity-feed {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 70px 0;
+}
+.activity-feed-container {
   width: 100%;
   height: 100%;
   box-shadow: var(--default-box-shadow);
@@ -153,5 +177,8 @@ export default {
   text-transform: uppercase;
   font-size: 0.8em;
   font-weight: bolder;
+}
+.hovered-path-item {
+  padding: 10px;
 }
 </style>

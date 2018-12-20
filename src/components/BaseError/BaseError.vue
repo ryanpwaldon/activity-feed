@@ -12,6 +12,9 @@ export default {
       type: Error,
       required: true
     }
+  },
+  mounted () {
+    console.error(this.error)
   }
 }
 </script>

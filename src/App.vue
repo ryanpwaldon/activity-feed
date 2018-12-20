@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <transition name="fade" mode="out-in" appear>
-      <keep-alive>
-        <router-view :key="$route.path"/>
-      </keep-alive>
+      <router-view :key="$route.path"/>
     </transition>
   </div>
 </template>

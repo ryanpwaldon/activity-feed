@@ -24,6 +24,5 @@ export default {
 }
 .base-activity-feed {
   max-width: 480px;
-  max-height: 80%;
 }
 </style>
