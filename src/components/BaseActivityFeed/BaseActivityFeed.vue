@@ -66,7 +66,7 @@ export default {
         const activities = []
         for (const activityFeedItem of this.activityFeed.activity_feed) {
           const task = activityFeedItem.task_id && this.getTaskDetails(activityFeedItem.task_id)
-          const profiles = new Map()
+          const profiles = {}
           for (const id of activityFeedItem.profile_ids) {
             profiles[id] = this.getProfileDetails(id)
           }
